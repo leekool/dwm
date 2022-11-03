@@ -39,10 +39,10 @@ weather[1]=$(echo ${weather[1]} | tr -d '+C')
 
 case "${weather[0],,}" in  # ',,' converts string to lowercase
    *"cloudy"*)
-      weather[0]="Cloudy"
+      weather[0]="☁ Cloudy"
       ;;
    *"shower"*)
-      weather[0]="Showers"
+      weather[0]="🌧 Showers"
       ;;
 esac
 
