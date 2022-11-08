@@ -23,4 +23,4 @@ if      [ "$VOL" -gt 66 ]; then ICON="🔊"; \
 elif    [ "$VOL" -gt 33 ]; then ICON="🔉"; \
 else    ICON="🔈"; fi
 
-echo "$ICON $VOL%"
+echo "[VOL: $VOL%]"

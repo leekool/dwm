@@ -1,5 +1,5 @@
 #!/bin/sh
 
 dwmblocks &
-feh --bg-tile ~/.config/dwm/wallpaper/yellow.png
+feh --bg-fill ~/.config/dwm/wallpaper/wall1.png
 picom -CGb &
