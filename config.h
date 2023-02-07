@@ -117,6 +117,7 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY|ShiftMask,             XK_s,                     spawn, SHCMD("screenshotssh.sh box") },
+	{ MODKEY,                       XK_e,                     spawn, SHCMD("emacs") },
 	{ 0,                            XF86XK_MonBrightnessUp,   spawn, SHCMD("xbacklight -inc 5") },
 	{ 0,                            XF86XK_MonBrightnessDown, spawn, SHCMD("xbacklight -dec 5") },
 	{ 0,                            XF86XK_AudioMute,         spawn, SHCMD("amixer -D pulse set Master toggle && kill -44 $(pidof dwmblocks)") },
