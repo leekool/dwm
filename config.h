@@ -20,9 +20,9 @@ static const char *fonts[]          = { "Tamzen:pixelsize=16" };
 static const char dmenufont[]       = "Tamzen:pixelsize=16";
 static const char col_gray1[]       = "#000000";
 static const char col_gray2[]       = "#222222";
-static const char col_gray3[]       = "#bbbbbb";
+static const char col_gray3[]       = "#fffefe";
 static const char col_gray4[]       = "#fffefe";
-static const char col_cyan[]        = "#928796";
+static const char col_cyan[]        = "#800000";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray4, col_gray1, col_gray2 },
@@ -118,6 +118,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY|ShiftMask,             XK_s,                     spawn, SHCMD("screenshotssh.sh box") },
 	{ MODKEY,                       XK_e,                     spawn, SHCMD("emacs") },
+	{ MODKEY,                       XK_c,                     spawn, SHCMD("xcolor.sh") },
 	{ 0,                            XF86XK_MonBrightnessUp,   spawn, SHCMD("xbacklight -inc 5") },
 	{ 0,                            XF86XK_MonBrightnessDown, spawn, SHCMD("xbacklight -dec 5") },
 	{ 0,                            XF86XK_AudioMute,         spawn, SHCMD("amixer -D pulse set Master toggle && kill -44 $(pidof dwmblocks)") },
