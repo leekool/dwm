@@ -18,15 +18,16 @@ static const int horizpadbar        = 0;        /* horizontal padding for status
 static const int vertpadbar         = 3;        /* vertical padding for statusbar */
 static const char *fonts[]          = { "Tamzen:pixelsize=16" };
 static const char dmenufont[]       = "Tamzen:pixelsize=16";
-static const char col_gray1[]       = "#000000";
-static const char col_gray2[]       = "#222222";
+static const char col_gray1[]       = "#222222";
+static const char col_gray2[]       = "#fffefe";
 static const char col_gray3[]       = "#fffefe";
 static const char col_gray4[]       = "#fffefe";
 static const char col_cyan[]        = "#800000";
+static const char col_unfocus[]     = "#3d3d3d";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray4, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray1, col_cyan,  col_cyan },
+	[SchemeNorm] = { col_gray4, col_gray1, col_unfocus },
+	[SchemeSel]  = { col_gray2, col_cyan,  col_gray1 },
 };
 
 /* tagging */
