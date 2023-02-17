@@ -77,7 +77,6 @@ static const char *termcmd[]  = { "alacritty", NULL };
 static const Key keys[] = {
 	/* modifier                     key                           function        argument */
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|Mod1Mask,              XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -117,8 +116,9 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|Mod1Mask,              XK_q,      quit,           {0} },
+	{ MODKEY|Mod1Mask,              XK_Return,                spawn, SHCMD("runterminal.sh") },
 	{ MODKEY|Mod1Mask,              XK_s,                     spawn, SHCMD("screenshotssh.sh box") },
-	{ MODKEY,                       XK_e,                     spawn, SHCMD("emacs") },
+	{ MODKEY,                       XK_e,                     spawn, SHCMD("runemacs.sh") },
 	{ MODKEY,                       XK_c,                     spawn, SHCMD("xcolor.sh") },
 	{ 0,                            XF86XK_MonBrightnessUp,   spawn, SHCMD("xbacklight -inc 5") },
 	{ 0,                            XF86XK_MonBrightnessDown, spawn, SHCMD("xbacklight -dec 5") },
