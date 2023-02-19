@@ -61,7 +61,7 @@ static const Layout layouts[] = {
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
+	{ MODKEY|Mod1Mask,              KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
@@ -100,7 +100,7 @@ static const Key keys[] = {
 	{ MODKEY|Mod1Mask,              XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
-	{ MODKEY|Mod1Mask,              XK_equal,  setgaps,        {.i = 0  } },
+	{ MODKEY|Mod1Mask,              XK_equal,  setgaps,        {.i = 0 } },
 	{ MODKEY,                       XK_Left,   shiftview,      {.i = -1} },
 	{ MODKEY,                       XK_Right,  shiftview,      {.i = +1} },
 	{ MODKEY|Mod1Mask,              XK_Left,   shifttag,       {.i = -1} },
