@@ -117,7 +117,8 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|Mod1Mask,              XK_q,      quit,           {0} },
 	{ MODKEY|Mod1Mask,              XK_Return,                spawn, SHCMD("runterminal.sh") },
-	{ MODKEY|Mod1Mask,              XK_s,                     spawn, SHCMD("screenshotssh.sh box") },
+	{ MODKEY,                       XK_s,                     spawn, SHCMD("screenshotssh.sh box") },
+	{ MODKEY|Mod1Mask,              XK_s,                     spawn, SHCMD("screenshotssh.sh window") },
 	{ MODKEY,                       XK_e,                     spawn, SHCMD("runemacs.sh") },
 	{ MODKEY,                       XK_c,                     spawn, SHCMD("xcolor.sh") },
 	{ 0,                            XF86XK_MonBrightnessUp,   spawn, SHCMD("xbacklight -inc 5") },
