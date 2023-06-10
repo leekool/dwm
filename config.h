@@ -18,20 +18,37 @@ static const int horizpadbar        = 0;        /* horizontal padding for status
 static const int vertpadbar         = 3;        /* vertical padding for statusbar */
 static const char *fonts[]          = { "Tamzen:pixelsize=16" };
 static const char dmenufont[]       = "Tamzen:pixelsize=16";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#fffefe";
-static const char col_gray3[]       = "#fffefe";
-static const char col_gray4[]       = "#fffefe";
-static const char col_cyan[]        = "#800000";
-static const char col_unfocus[]     = "#3d3d3d";
-static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray4, col_gray1, col_unfocus },
-	[SchemeSel]  = { col_gray2, col_cyan,  col_gray1 },
+
+// static const char col_gray1[]       = "#222222";
+// static const char col_gray2[]       = "#fffefe";
+// static const char col_gray3[]       = "#fffefe";
+// static const char col_gray4[]       = "#fffefe";
+// static const char col_cyan[]        = "#800000";
+// static const char col_unfocus[]     = "#3d3d3d";
+// static const char *colors[][3]      = {
+// 	/*               fg         bg         border   */
+// 	[SchemeNorm] = { col_gray4, col_gray1, col_unfocus },
+// 	[SchemeSel]  = { col_gray2, col_cyan,  col_gray1 },
+// };
+static char normbgcolor[]     = "#222222";
+static char normbordercolor[] = "#444444";
+static char normfgcolor[]     = "#bbbbbb";
+static char ltsbgcolor[]      = "#bbbbbb";
+static char selfgcolor[]      = "#eeeeee";
+static char selbordercolor[]  = "#3d3d3d";
+static char selbgcolor[]      = "#800000";
+static char *colors[][4] = {
+       /*               fg           bg           border   */
+       [SchemeNorm]  = { normfgcolor, normbgcolor, normbordercolor },
+       [SchemeSel]   = { selfgcolor,  selbgcolor,  selbordercolor  },
+       // [SchemeTitle] = { normfgcolor, normbgcolor, normbordercolor  },
+       // [SchemeLts] =   { normfgcolor, ltsbgcolor,  normbordercolor  },
 };
 
+
+
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -49,12 +66,20 @@ static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
+// static const Layout layouts[] = {
+// 	/* symbol     arrange function */
+// 	{ "[]=",      tile },    /* first entry is default */
+// 	{ "><>",      NULL },    /* no layout function means floating behavior */
+// 	{ "[M]",      monocle },
+// };
+
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	{ "",      tile },    /* first entry is default */
+	{ "",      NULL },    /* no layout function means floating behavior */
+	{ "[M]",    monocle },
 };
+
 
 /* key definitions */
 #define MODKEY Mod4Mask
@@ -70,7 +95,7 @@ static const Layout layouts[] = {
 #define STATUSBAR "dwmblocks"
 
 /* commands */
-static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", normbgcolor, "-nf", normbordercolor, "-sb", selfgcolor, "-sf", normbgcolor, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 
 #include "patch/shift-tools.c"
@@ -116,11 +141,11 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|Mod1Mask,              XK_q,      quit,           {0} },
-	{ MODKEY|Mod1Mask,              XK_Return,                spawn, SHCMD("runterminal.sh") },
-	{ MODKEY,                       XK_s,                     spawn, SHCMD("screenshotssh.sh box") },
-	{ MODKEY|Mod1Mask,              XK_s,                     spawn, SHCMD("screenshotssh.sh window") },
-	{ MODKEY,                       XK_e,                     spawn, SHCMD("runemacs.sh") },
-	{ MODKEY,                       XK_c,                     spawn, SHCMD("xcolor.sh") },
+	{ MODKEY|Mod1Mask,              XK_Return,                spawn, SHCMD("sh runterminal.sh") },
+	{ MODKEY,                       XK_s,                     spawn, SHCMD("sh screenshotssh.sh box") },
+	{ MODKEY|Mod1Mask,              XK_s,                     spawn, SHCMD("sh screenshotssh.sh window") },
+	{ MODKEY,                       XK_e,                     spawn, SHCMD("sh runemacs.sh") },
+	{ MODKEY,                       XK_c,                     spawn, SHCMD("sh xcolor.sh") },
 	{ 0,                            XF86XK_MonBrightnessUp,   spawn, SHCMD("xbacklight -inc 5") },
 	{ 0,                            XF86XK_MonBrightnessDown, spawn, SHCMD("xbacklight -dec 5") },
 	{ 0,                            XF86XK_AudioMute,         spawn, SHCMD("amixer -D pulse set Master toggle && kill -44 $(pidof dwmblocks)") },
