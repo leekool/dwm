@@ -9,4 +9,5 @@ case $BLOCK_BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-echo "[RAM: $(free -m | awk -v CONVFMT='%.2f' 'NR==2{print substr($3*100/$2, 1, length ($2) - 1)"%"}')]"
+# echo "[RAM: $(free -m | awk -v CONVFMT='%.2f' 'NR==2{print substr($3*100/$2, 1, length ($2) - 1)"%"}')]"
+echo "💾 $(free -m | awk -v CONVFMT='%.2f' 'NR==2{print substr($3*100/$2, 1, length ($2) - 1)"%"}')"

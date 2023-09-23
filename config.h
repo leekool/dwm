@@ -15,6 +15,7 @@ static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
 static int linepx             = 2;        /* 0 means no underline */
 // static const char *fonts[]    = { "Ttyp0:size=11" };
+// static const char dmenufont[] = "Ttyp0:size=11";
 static const char *fonts[]          = { "Tamzen:pixelsize=16" };
 static const char dmenufont[]       = "Tamzen:pixelsize=16";
 static char normbgcolor[]     = "#222222";
@@ -42,8 +43,8 @@ typedef struct {
 } Sp;
 
 const char *spumpv[] = {"umpv", NULL };
-const char *spmusic[] = {"st", "-c", "music", "-e", "music", NULL };
-const char *spterm[] = {"st", "-c", "scratch", NULL };
+const char *spmusic[] = {"alacritty", "-c", "music", "-e", "music", NULL };
+const char *spterm[] = {"alacritty", "-c", "scratch", NULL };
 
 static Sp scratchpads[] = {
 	/* name          cmd  */
@@ -70,7 +71,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static float mfact     = 0.50; /* factor of master area size [0.05..0.95] */
 static int nmaster     = 1;    /* number of clients in master area */
 static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int attachbelow = 1;    /* 1 means attach after the currently active window */
@@ -101,7 +102,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", normbgcolor, "-nf", normbordercolor, "-sb", selfgcolor, "-sf", normbgcolor, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 
 /*
@@ -169,38 +170,13 @@ static Key keys[] = {
 	// { MODKEY,           XK_y,      spawn,          SHCMD("dmenu_search") },
 	/* scratchpads */
 	// { MODKEY,           XK_m,      togglescratch,  {.ui = 0 } }, /* cmus     */
-	// { MODKEY,           XK_o,      togglescratch,  {.ui = 1 } }, /* terminal */
+	{ MODKEY,           XK_o,      togglescratch,  {.ui = 1 } }, /* terminal */
 	// { MODKEY,           XK_u,      togglescratch,  {.ui = 2 } }, /* umpv     */
-	// { MODKEY,           XK_Print,  spawn,          SHCMD("capture shot full") },
-	// { MODKEY|ShiftMask, XK_Print,  spawn,          SHCMD("capture shot sel tmp") },
-	// { MODKEY,           XK_r,      spawn,          SHCMD("capture vid full") },
-	// { MODKEY|ShiftMask, XK_r,      spawn,          SHCMD("capture vid sel tmp") },
 	{ MODKEY,                       XK_Left,   shiftview,      {.i = -1} },
 	{ MODKEY,                       XK_Right,  shiftview,      {.i = +1} },
 	{ MODKEY|Mod1Mask,              XK_Left,   shifttag,       {.i = -1} },
 	{ MODKEY|Mod1Mask,              XK_Right,  shifttag,       {.i = +1} },
-
 	{ Mod1Mask,                     XK_Tab,    altTabStart,    {0} },
-	// { MODKEY|Mod1Mask,              XK_h,      setcfact,       {.f = +0.25} },
-	// { MODKEY|Mod1Mask,              XK_l,      setcfact,       {.f = -0.25} },
-	/* layouts */
-
-	// { MODKEY,           XK_space,  cyclelayout,    {.i = +1 } },
-	// { MODKEY|ShiftMask, XK_space,  cyclelayout,    {.i = -1 } },
-
-	// { MODKEY,           XK_t,      togglefloating, {0} },
-	/* multimedia keys */
-	// { 0, XF86XK_AudioMute,         spawn, SHCMD("vol mute") },
-	// { 0, XF86XK_AudioMicMute,      spawn, SHCMD("amixer -q sset Capture toggle") },
-	// { 0, XF86XK_AudioRaiseVolume,  spawn, SHCMD("vol up 5") },
-	// { 0, XF86XK_AudioLowerVolume,  spawn, SHCMD("vol down 5") },
-	// { 0, XF86XK_AudioPrev,         spawn, SHCMD("cmus-remote -r") },
-	// { 0, XF86XK_AudioNext,         spawn, SHCMD("cmus-remote -n") },
-	// { 0, XF86XK_AudioPlay,         spawn, SHCMD("cmus-remote -u") },
-	// { 0, XF86XK_Launch1,           spawn, TSHCMD("-t floating -e alsamixer") },
-	// { 0, XF86XK_MonBrightnessUp,   spawn, SHCMD("light -A 5") },
-	// { 0, XF86XK_MonBrightnessDown, spawn, SHCMD("light -U 5") },
-	// { 0, XF86XK_ScreenSaver,       spawn, SHCMD("slock") },
 	{ MODKEY|Mod1Mask,              XK_Return,                spawn, SHCMD("sh runterminal.sh") },
 	{ MODKEY,                       XK_s,                     spawn, SHCMD("sh screenshotssh.sh box") },
 	{ MODKEY|Mod1Mask,              XK_s,                     spawn, SHCMD("sh screenshotssh.sh window") },
@@ -211,7 +187,6 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioMute,         spawn, SHCMD("amixer -D pulse set Master toggle && kill -44 $(pidof dwmblocks)") },
 	{ 0,                            XF86XK_AudioRaiseVolume,  spawn, SHCMD("amixer -D pulse set Master 5%+ && kill -44 $(pidof dwmblocks)") },
 	{ 0,                            XF86XK_AudioLowerVolume,  spawn, SHCMD("amixer -D pulse set Master 5%- && kill -44 $(pidof dwmblocks)") },
-
 	/* tags */
 	{ MODKEY,           XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask, XK_0,      tag,            {.ui = ~0 } },

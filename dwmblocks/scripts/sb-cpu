@@ -9,4 +9,5 @@ case $BLOCK_BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-echo "[CPU: $(uptime | awk '{for (I=1;I<NF;I++) if ($I == "average:") {print substr($(I + 1), 1, length($I) - 4)}}')]"
+# echo "[CPU: $(uptime | awk '{for (I=1;I<NF;I++) if ($I == "average:") {print substr($(I + 1), 1, length($I) - 4)}}')]"
+echo "🖥 $(uptime | awk '{for (I=1;I<NF;I++) if ($I == "average:") {print substr($(I + 1), 1, length($I) - 4)}}')"

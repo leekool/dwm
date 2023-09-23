@@ -46,4 +46,5 @@ case "${weather[0],,}" in  # ',,' converts string to lowercase
       ;;
 esac
 
-echo " ${weather[0]} ${weather[1]}"
+# echo " ${weather[0]} ${weather[1]}"
+echo " ${weather[1]}"
