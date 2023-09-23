@@ -16,8 +16,8 @@ static int topbar             = 1;        /* 0 means bottom bar */
 static int linepx             = 2;        /* 0 means no underline */
 // static const char *fonts[]    = { "Ttyp0:size=11" };
 // static const char dmenufont[] = "Ttyp0:size=11";
-static const char *fonts[]          = { "Tamzen:pixelsize=16" };
-static const char dmenufont[]       = "Tamzen:pixelsize=16";
+static const char *fonts[]          = { "CozetteHiDpi:pixelsize=18" };
+static const char dmenufont[]       = "CozetteHiDpi:pixelsize=18";
 static char normbgcolor[]     = "#222222";
 static char normbordercolor[] = "#444444";
 static char normfgcolor[]     = "#bbbbbb";
@@ -34,7 +34,8 @@ static char *colors[][4] = {
 };
 
 /* tagging */
-static const char *tags[] = { "Ⅰ", "Ⅱ", "Ⅲ", "Ⅳ", "Ⅴ", "Ⅵ", "Ⅶ" };
+// static const char *tags[] = { "Ⅰ", "Ⅱ", "Ⅲ", "Ⅳ", "Ⅴ", "Ⅵ", "Ⅶ" };
+static const char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII" };
 /* static const char *tags[] = { "а", "б", "в", "г", "д", "е", "ё" }; */
 
 typedef struct {

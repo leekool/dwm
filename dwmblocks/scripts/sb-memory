@@ -10,4 +10,4 @@ case $BLOCK_BUTTON in
 esac
 
 # echo "[RAM: $(free -m | awk -v CONVFMT='%.2f' 'NR==2{print substr($3*100/$2, 1, length ($2) - 1)"%"}')]"
-echo "💾 $(free -m | awk -v CONVFMT='%.2f' 'NR==2{print substr($3*100/$2, 1, length ($2) - 1)"%"}')"
+echo " $(free -m | awk -v CONVFMT='%.2f' 'NR==2{print substr($3*100/$2, 1, length ($2) - 1)"%"}')"
