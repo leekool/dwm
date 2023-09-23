@@ -14,16 +14,16 @@ static const int swallowfloating = 0;  /* 1 means swallow floating windows by de
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
 static int linepx             = 2;        /* 0 means no underline */
-// static const char *fonts[]    = { "Ttyp0:size=11" };
-// static const char dmenufont[] = "Ttyp0:size=11";
-static const char *fonts[]          = { "CozetteHiDpi:pixelsize=18" };
-static const char dmenufont[]       = "CozetteHiDpi:pixelsize=18";
-static char normbgcolor[]     = "#222222";
-static char normbordercolor[] = "#444444";
+static const char *fonts[]          = { "Cozette:size=14" };
+static const char dmenufont[]       = "Cozette:size=14";
+// static const char *fonts[]          = { "Tamzen:pixelsize=19" };
+// static const char dmenufont[]       = "Tamzen:pixelsize=19";
+static char normbgcolor[]     = "#000000";
+static char normbordercolor[] = "#222222";
 static char normfgcolor[]     = "#bbbbbb";
 static char ltsbgcolor[]      = "#bbbbbb";
 static char selfgcolor[]      = "#efefef";
-static char selbordercolor[]  = "#800000";
+static char selbordercolor[]  = "#3d3d3d";
 static char selbgcolor[]      = "#800000";
 static char *colors[][4] = {
        /*               fg           bg           border   */
@@ -34,8 +34,8 @@ static char *colors[][4] = {
 };
 
 /* tagging */
-// static const char *tags[] = { "Ⅰ", "Ⅱ", "Ⅲ", "Ⅳ", "Ⅴ", "Ⅵ", "Ⅶ" };
-static const char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII" };
+static const char *tags[] = { "Ⅰ", "Ⅱ", "Ⅲ", "Ⅳ", "Ⅴ", "Ⅵ" };
+// static const char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII" };
 /* static const char *tags[] = { "а", "б", "в", "г", "д", "е", "ё" }; */
 
 typedef struct {
@@ -45,7 +45,7 @@ typedef struct {
 
 const char *spumpv[] = {"umpv", NULL };
 const char *spmusic[] = {"alacritty", "-c", "music", "-e", "music", NULL };
-const char *spterm[] = {"alacritty", "-c", "scratch", NULL };
+const char *spterm[] = {"alacritty", "--class", "spterm", "-o", "window.dimensions.columns=120", "-o", "window.dimensions.lines=34", NULL };
 
 static Sp scratchpads[] = {
 	/* name          cmd  */
@@ -59,15 +59,14 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class | instance | title | tags mask | isfloating | isterminal | noswallow |
-	 * monitor | scratchkey */
+	/* class | instance | title | tags mask | isfloating | isterminal | noswallow | monitor | scratchkey */
 	{ "Gimp",     NULL,   NULL,           0, 1, 0,  0, -1, },
-	{ NULL,       "alacritty",   NULL,           0, 0, 1, -1, -1, },
+	{ NULL,       "alacritty",   NULL,    0, 0, 1, -1, -1, },
 	{ NULL,       NULL,   "Event Tester", 0, 1, 0,  1, -1, },
 	{ NULL,       NULL,   "Media viewer", 0, 1, 0,  0, -1, },
 	{ NULL,       NULL,   "floating",     0, 1, 1,  0, -1, },
 	{ "music",    NULL,   NULL,    SPTAG(0), 1, 1,  0, -1, },
-	{ "scratch",  NULL,   NULL,    SPTAG(1), 1, 1,  0, -1, },
+	{ "spterm",   NULL,   NULL,    SPTAG(1), 1, 1,  0, -1, },
 	{ NULL,      "umpv",  NULL,    SPTAG(2), 1, 1,  0, -1, },
 };
 
@@ -79,10 +78,10 @@ static const int attachbelow = 1;    /* 1 means attach after the currently activ
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "",        tile },    /* first entry is default */
-	{ "",        bstack },
-	{ "[M]",      monocle },
-	{ "",        NULL },    /* no layout function means floating behavior */
+	{ "⇲",        tile },    /* first entry is default */
+	{ "⇱",        bstack },
+	{ "[M]",      monocle }, /* maximised */
+	{ "∃",        NULL },    /* no layout function means floating behavior */
 	{ NULL,       NULL },
 };
 
